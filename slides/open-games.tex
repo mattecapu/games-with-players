@@ -1,0 +1,337 @@
+\begin{frame}{Open games}
+	\textbf{Warning}: Open games are compositional structures, hence the single building blocks do not make much sense from a classical standpoint -- you have to put them together to get something meaningful
+
+	\vfill
+	Informally: an 'atomic' open game is a forest of bushes
+	(pic)
+\end{frame}
+
+\begin{frame}{Open games}
+	First of all, let's model the information flow of a game.
+	(pic of a tree)
+	There's two phases in a game
+	\begin{enumerate}
+		\item The 'play' or 'forward phase': players takes turn and make their own decisions until a leaf is reached
+		\item The 'coplay' or 'backward phase': payoffs propagate back to player along the tree
+	\end{enumerate}
+
+	The backward phase is done for analysis purposes: we observe how different decisions would bring about different payoffs (\textbf{backward induction})
+\end{frame}
+
+\begin{frame}{Open games}
+	A \textbf{lens} models exactly this bidirectional information flow:
+
+	(pic of a lens)
+
+	Slogan: `\textbf{Time flows clockwise}'
+
+	\begin{definition}
+		Let $\cat C$ be a cartesian category (think: sets \& functions). A \textbf{lens} $(X,S) \to (Y,R)$ is a pair of maps
+		\begin{eqalign*}
+			\mathsf{view} &: X \to Y\\
+			\mathsf{update} &: X \times R \to S
+		\end{eqalign*}
+	\end{definition}
+
+	Intuition: \textbf{view} corresponds to the forward step, \textbf{update} to the backward step.
+\end{frame}
+
+\begin{frame}{Open games}
+	So a game can be represented naively as a lens $(X,S) \to (Y,R)$ where
+	\begin{description}
+		\item[...] $X$ are \textbf{states of the game}
+		\item[...] $Y$ are \textbf{moves}
+		\item[...] $R$ are \textbf{utilities}
+		\item[...] $S$ are \textbf{coutilities}
+	\end{description}
+
+	In open games we call the forward part of a lens '\textbf{play}' and backward part '\textbf{coplay}'
+\end{frame}
+
+\begin{frame}{Open games}
+	What's coutility?
+
+	\begin{quotation}
+		For a given node $x$ in a game, a player’s continuation value (also called continuation payoff) is the payoff that this player will eventually get contingent on the path of play passing through node $x$.\\
+		{\color{colornote}-- Strategy \cite{strategy}}
+	\end{quotation}
+
+	The coplay function takes on this job. In classical game theory it's hidden in backward induction.
+	It doesn't \textbf{have to} be trivial, but it often is.
+\end{frame}
+
+\begin{frame}{Open games}
+	Lenses, hence games, can then be composed in at least two ways:
+
+	(sequential)
+
+	(parallel)
+\end{frame}
+
+\begin{frame}{Open games}
+	We can use sequential composition to give a lens a \textbf{context}, i.e. an initial \textbf{state} and a \textbf{payoff function}
+
+	(pic)
+
+	Remember: '\textbf{time flows clockwise}'
+\end{frame}
+
+\begin{frame}{Open games}
+	What's missing?
+
+	\begin{quotation}
+		What does it mean to say that agents are self-interested? [...] [I]t means that each agent has \textbf{[their] own description} of which \textbf{states of the world [they like]}—which can include good things happening to other agents—and that \textbf{[they act]} in an attempt to bring about these states of the world.\\
+		{\color{colornote}-- Essentials of Game Theory \cite{eogt}}
+	\end{quotation}
+
+	Three things:
+	\begin{enumerate}
+		\item A way for agents to \textbf{act in the world}
+		\item A way for agents to \textbf{represent the world}
+		\item A way for agents to \textbf{evaluate the world}
+	\end{enumerate}
+
+	At the moment, agents do not intervene in the unfolding of the game: plays and coplays are fixed
+
+	We need to give a 'steering wheel' to agents
+\end{frame}
+
+\begin{frame}{Interlude I: the Para construction}
+
+	Para originates in \cite{backpropasafunctor} an has been adopted by this group (Bruno) to represent all sort of stuff. Also Toby Smithe has come up with a Para-like construction, Proxy.
+\end{frame}
+
+\begin{frame}{Interlude I: the Para construction}
+	\begin{definition}
+		When $\cat C$ is symmetric monoidal, $\Para(\cat C)$ is the category of parametrized morphisms of $\cat C$:
+		\begin{enumerate}
+			\item objects are the same,
+			\item a morphism $A \to B$ is given by a choice of parameter $P : \cat C$ and a choice of morphism $P \otimes A \to B$ in $\cat C$:
+		\end{enumerate}
+	\end{definition}
+
+	(pic of para morphism)
+\end{frame}
+
+
+\begin{frame}{Interlude I: the Para construction}
+	$\Para(C)$ is again symmetric monoidal:
+
+	(pic of seq comp)
+
+	(pic of par comp)
+
+	and, most importantly, it's a \textbf{bicategory}
+
+	(pic of 2-cell)
+\end{frame}
+
+\begin{frame}{Interlude I: the Para construction}
+	Now, if our morphisms are `bidirectional', we get an even more interesting picture:
+
+	(pic of para optic)
+
+	If we peek inside, we can see the new information flow:
+
+	(pic of para lens, opened up)
+\end{frame}
+
+\begin{frame}{Open games}
+	\textbf{Idea}: if 'games without agency' are lenses, 'games with agency' are \emph{parametrized} lenses:
+
+	\begin{itemize}
+		\item parameters are \textbf{strategies}: \textbf{the ways an agent acts} in the world
+		\item coparameters are \textbf{'costrategies'}: \textbf{the ways an agent represents} the world
+	\end{itemize}
+
+	The only piece still missing is ways for agents to \textbf{evaluate} the world.
+\end{frame}
+
+\begin{frame}{Interlude II: selection functions}
+	\begin{definition}
+		A \textbf{continuation} on a object $X$ with scalars an object $R$ is a map
+		\begin{equation*}
+			K_R(X) = (X \to R) \to R
+		\end{equation*}
+	\end{definition}
+
+	It's a `generalized quantifier': $\max$, $\min$, $\exists$, $\forall$
+
+	If the ambient category is cartesian closed, $K_R$ defines a monad.
+\end{frame}
+
+\begin{frame}{Interlude II: selection functions}
+	Selection functions `realize' quantifiers:
+
+	\begin{definition}
+		Def. A \textbf{selection function} on a object X with scalars an object R is a map
+		\begin{equation*}
+			J_R(X) = (X \to R) \to X
+		\end{equation*}
+	\end{definition}
+
+	Examples: $\argmax$, $\argmin$, Hilbert's $\varepsilon$
+
+	If the ambient category is cartesian closed, $J_R$ defines a monad.
+\end{frame}
+
+\begin{frame}{Interlude II: selection functions}
+	Notice: often quantifiers are realized by multiple elements...
+
+	(ambiguous max function)
+
+	So a better type for selection functions is
+
+	\begin{equation*}
+		(X \to R) \to \copow X
+	\end{equation*}
+
+	where $\copow$ is the powerset monad.
+\end{frame}
+
+\begin{frame}{Interlude II: selection functions}
+
+	Also notice:
+
+	\begin{diagram*}
+		(X \to R) \arrow{r} \& \copow  X\\[-8ex]
+		\text{costate of $(X, R)$} \& \text{state of $(X, R)$}
+	\end{diagram*}
+
+	so we arrive to a general definition:
+
+	\begin{definition}
+		Let $\cat C$ be a monoidal category. Then the selection functions functor is
+		given by
+		\begin{eqalign*}
+			\Sel : \cat C &\longto \Cat\\
+			X &\longmapsto \cat C(X, I) \to \copow \cat C(I,X)
+		\end{eqalign*}
+	\end{definition}
+
+	The codomain is $\Cat$ since this set is ordered by pointwise inclusion:
+	\vspace{-2ex}
+	\begin{equation*}
+		\varepsilon \leq \varepsilon' \sse \forall k \in \cat C(X,I),\ \varepsilon(k) \subseteq \varepsilon'(k)
+	\end{equation*}
+\end{frame}
+
+\begin{frame}{Interlude II: selection functions}
+	$\Sel$ is a functor because it also acts on morphism by \textbf{pushforward}:
+
+	(pic from wiki)
+
+	\textbf{Idea}: selection functions are a relation between states and costates
+	(Probably better: selection functions are predicates on \emph{contexts})
+\end{frame}
+
+\begin{frame}{Interlude II: selection functions}
+	Finally, $\Sel$ is \textbf{lax monoidal} with \textbf{Nash product}:
+
+	\begin{eqalign*}
+		\boxtimes &: \Sel(X) \times \Sel(Y) \to \Sel(X \otimes Y)\\
+		&(\varepsilon \boxtimes \eta)(k) = \{ x \otimes y \in (X \otimes y)_* \varepsilon(k) \cap (x \otimes Y)_* \eta(k) \}
+	\end{eqalign*}
+
+	(pic)
+\end{frame}
+
+\begin{frame}{Open games}
+	To see why we call this the Nash product, let's go back to games...
+
+	(pic of para optic)
+
+	At this point, we only miss one piece of data:
+	\begin{enumerate}
+		\item[3] A way for agents to \textbf{evaluate the world}
+	\end{enumerate}
+
+	\vfill
+	Idea: for each player, we pick a selection function
+	\begin{equation*}
+		\varepsilon \in \Sel(\Omega, \Comega)
+	\end{equation*}
+	to model their preferences
+\end{frame}
+
+\begin{frame}{Open games}
+	Now, careful. Recall:
+
+	\vfill
+	\begin{quotation}
+		Game theory is the mathematical study of \textbf{interaction} among independent, self-interested \textbf{agents}.\\
+		{\color{colornote}-- Essentials of Game Theory \cite{eogt}}
+	\end{quotation}
+
+
+	A game factors in two parts
+	\begin{enumerate}
+		\item An \textbf{arena}, which models the {interaction patterns} in the game
+		\item A set of \textbf{agents}, i.e. the players, which make \textbf{decisions} at different points of a game
+	\end{enumerate}
+
+	Without (2) a game would be only a \textbf{dynamical system}, whose dynamic is fixed.
+	Instead, in a game \textbf{agents can vary the dynamics in response to the observed unfolding of the interaction}.
+\end{frame}
+
+\begin{frame}{Open games}
+	Therefore: \textbf{agents live in the parametrization direction}
+
+	(pic: para optic with arena and agents areas highlighted)
+
+	The arena plays the role of a costate to them:
+
+	(pic of $\top$ action)
+\end{frame}
+
+\begin{frame}{Open games}
+	Finally, if arenas can be defined '\textbf{locally}' because they are information plumbing, agents' interests can't since they are defined '\textbf{globally}': an agent might observe and interact with the arena at multiple, causally 'far' points.
+
+	We take advantage of the 2-cells in Para(Lens) to handle this:
+
+	(pic)
+\end{frame}
+
+\begin{frame}{Open games}
+	Great! So an open game is
+
+	\begin{definition}
+		\begin{enumerate}
+			\item A \textbf{parametrized lens}
+			\begin{equation*}
+				\G : (X, S) \nlongto{(P, P')} (Y,R)
+			\end{equation*}
+			\item A set of players $\{1, ..., n\}$, each represented by their own \textbf{selection function}
+			\begin{equation*}
+				\varepsilon_i \in \Sel(\Omega_i, \Comega_i)
+			\end{equation*}
+			\item A \textbf{wiring 2-cell}:
+			\begin{equation*}
+				w : \prod_{i \in I} (\Omega_i, \Comega_i) \longto (P,P')
+			\end{equation*}
+		\end{enumerate}
+	\end{definition}
+\end{frame}
+
+\begin{frame}{Open games}
+	Equilibria are given by
+
+	\begin{equation*}
+		\eq(x,u) = (\varepsilon_1 \boxtimes \cdots \boxtimes \varepsilon_n)(w ; (x ; G ; u)^\top)
+	\end{equation*}
+
+	It can be shown that this definition is compositional in the natural way, and recovers Nash equilibria as a solution concept (which justifies calling $\boxtimes$ \textbf{Nash product})
+\end{frame}
+
+\begin{frame}{Open games}
+	This solves long-standing problems with open games:
+
+	\begin{enumerate}
+		\item We finally compute ther \textbf{right set of Nash equilibria}
+		\item We can handle situations of \textbf{imperfect recall}
+		\item We can define equilibria for \textbf{internal choice}
+		\item We can even model coalitional games (future work)
+	\end{enumerate}
+
+	Still a lot to explore.
+\end{frame}
