@@ -1,112 +1,107 @@
 \begin{frame}{Open games}
-	\textbf{Warning}: Open games are compositional structures, hence the single building blocks do not make much sense from a classical standpoint -- you have to put them together to get something meaningful
+	\textbf{Warning}: Open games are compositional structures, hence the single building blocks do not make much sense from a classical standpoint -- you have to put them together to get something meaningful!
 
 	\vfill
-	Informally: an 'atomic' open game is a forest of bushes
-	(pic)
+	Intuitively, an 'atomic' open game is a forest of bushes:
+
+	\begin{center}
+		\includegraphics[width=.9\textwidth]{figures/bush_forest.jpg}
+	\end{center}
 \end{frame}
 
-\begin{frame}{Open games}
-	First of all, let's model the information flow of a game.
-	(pic of a tree)
+\begin{frame}{Back and forth}
+	\vspace{-5ex}
+	\begin{center}
+		\includegraphics[width=.5\textwidth]{figures/ext_game.png}
+	\end{center}
+
+	\vspace{-6ex}
 	There's two phases in a game
 	\begin{enumerate}
-		\item The 'play' or 'forward phase': players takes turn and make their own decisions until a leaf is reached
-		\item The 'coplay' or 'backward phase': payoffs propagate back to player along the tree
+		\item The `forward phase': players take turns and make their own decisions until a leaf is reached
+		\item The `backward phase': payoffs propagate back to players along the tree
 	\end{enumerate}
 
-	The backward phase is done for analysis purposes: we observe how different decisions would bring about different payoffs (\textbf{backward induction})
+	\vfill
+	The backward phase is done for analysis purposes: we observe how different decisions affect a player's payoff\\
+	\qquad $\longto$ \textbf{backward induction}
 \end{frame}
 
-\begin{frame}{Open games}
+\begin{frame}{Lenses and bidirectional information flows}
 	A \textbf{lens} models exactly this bidirectional information flow:
 
 	(pic of a lens)
 
-	Slogan: `\textbf{Time flows clockwise}'
-
 	\begin{definition}
-		Let $\cat C$ be a cartesian category (think: sets \& functions). A \textbf{lens} $(X,S) \to (Y,R)$ is a pair of maps
+		Let $\cat C$ be a cartesian category (think: sets \& functions).\\
+		A \textbf{lens} $(X,S) \to (Y,R)$ is a pair of maps
 		\begin{eqalign*}
 			\mathsf{view} &: X \to Y\\
 			\mathsf{update} &: X \times R \to S
 		\end{eqalign*}
 	\end{definition}
-
-	Intuition: \textbf{view} corresponds to the forward step, \textbf{update} to the backward step.
+	{\color{colornote}They can be generalized greatly, see \textbf{optics} \cite{reilly}}
 \end{frame}
 
-\begin{frame}{Open games}
-	So a game can be represented naively as a lens $(X,S) \to (Y,R)$ where
-	\begin{description}
-		\item[...] $X$ are \textbf{states of the game}
-		\item[...] $Y$ are \textbf{moves}
-		\item[...] $R$ are \textbf{utilities}
-		\item[...] $S$ are \textbf{coutilities}
-	\end{description}
+\begin{frame}{Games as lenses}
+	So a game can be represented naively as a lens $(X,S) \to (Y,R)$:
 
-	In open games we call the forward part of a lens '\textbf{play}' and backward part '\textbf{coplay}'
 \end{frame}
 
-\begin{frame}{Open games}
-	What's coutility?
+\begin{frame}{What's coutility?}
 
+	\vfill
 	\begin{quotation}
 		For a given node $x$ in a game, a player’s continuation value (also called continuation payoff) is the payoff that this player will eventually get contingent on the path of play passing through node $x$.\\
 		{\color{colornote}-- Strategy \cite{strategy}}
 	\end{quotation}
 
+	\vfill
 	The coplay function takes on this job. In classical game theory it's hidden in backward induction.
-	It doesn't \textbf{have to} be trivial, but it often is.
+	It doesn't \emph{have to} be trivial, but it often is.
 \end{frame}
 
-\begin{frame}{Open games}
-	Lenses, hence games, can then be composed in at least two ways:
-
-	(sequential)
-
-	(parallel)
+\begin{frame}{Sequential composition}
+.
 \end{frame}
 
-\begin{frame}{Open games}
+\begin{frame}{Parallel composition}
+.
+\end{frame}
+
+\begin{frame}{Closing a game}
 	We can use sequential composition to give a lens a \textbf{context}, i.e. an initial \textbf{state} and a \textbf{payoff function}
 
 	(pic)
 
-	Remember: '\textbf{time flows clockwise}'
+	Slogan: `\textbf{Time flows clockwise}'
 \end{frame}
 
-\begin{frame}{Open games}
-	What's missing?
-
+\begin{frame}{What's missing?}
 	\begin{quotation}
-		What does it mean to say that agents are self-interested? [...] [I]t means that each agent has \textbf{[their] own description} of which \textbf{states of the world [they like]}—which can include good things happening to other agents—and that \textbf{[they act]} in an attempt to bring about these states of the world.\\
-		{\color{colornote}-- Essentials of Game Theory \cite{eogt}}
+		What does it mean to say that agents are self-interested? [...] It means that each agent has \textbf{their own description} of which \textbf{states of the world they like}—which can include good things happening to other agents—and that \textbf{they act} in an attempt to bring about these states of the world.\\
+		{\color{colornote}-- Essentials of Game Theory \cite{leyton2008essentials}}
 	\end{quotation}
 
-	Three things:
+	At the moment, agents do not intervene: plays and coplays are fixed
+
+	\vfill
+	We need to give agents:
 	\begin{enumerate}
-		\item A way for agents to \textbf{act in the world}
-		\item A way for agents to \textbf{represent the world}
-		\item A way for agents to \textbf{evaluate the world}
+		\item a way to \textbf{act in the world}
+		\item a way to \textbf{observe the world}
+		\item a way to \textbf{evaluate the world}
 	\end{enumerate}
-
-	At the moment, agents do not intervene in the unfolding of the game: plays and coplays are fixed
-
-	We need to give a 'steering wheel' to agents
 \end{frame}
 
 \begin{frame}{Interlude I: the Para construction}
+	Originally from \cite{fong2019backprop}, but expanded greatly in the last year
 
-	Para originates in \cite{backpropasafunctor} an has been adopted by this group (Bruno) to represent all sort of stuff. Also Toby Smithe has come up with a Para-like construction, Proxy.
-\end{frame}
-
-\begin{frame}{Interlude I: the Para construction}
 	\begin{definition}
 		When $\cat C$ is symmetric monoidal, $\Para(\cat C)$ is the category of parametrized morphisms of $\cat C$:
 		\begin{enumerate}
 			\item objects are the same,
-			\item a morphism $A \to B$ is given by a choice of parameter $P : \cat C$ and a choice of morphism $P \otimes A \to B$ in $\cat C$:
+			\item a morphism $A \to B$ is given by a choice of parameter $P : \cat C$ and a choice of morphism $f:P \otimes A \to B$ in $\cat C$:
 		\end{enumerate}
 	\end{definition}
 
@@ -139,11 +134,15 @@
 \begin{frame}{Open games}
 	\textbf{Idea}: if 'games without agency' are lenses, 'games with agency' are \emph{parametrized} lenses:
 
+	\vfill
 	\begin{itemize}
-		\item parameters are \textbf{strategies}: \textbf{the ways an agent acts} in the world
-		\item coparameters are \textbf{'costrategies'}: \textbf{the ways an agent represents} the world
+		\item parameters are \textbf{strategies}:\\
+		\qquad \textbf{the ways an agent acts} in the world\\[3.5ex]
+		\item coparameters are \textbf{'costrategies'}:\\
+		\qquad \textbf{the ways an agent observes} the world
 	\end{itemize}
 
+	\vfill
 	The only piece still missing is ways for agents to \textbf{evaluate} the world.
 \end{frame}
 
@@ -157,12 +156,14 @@
 
 	It's a `generalized quantifier': $\max$, $\min$, $\exists$, $\forall$
 
+	\vfill
 	If the ambient category is cartesian closed, $K_R$ defines a monad.
 \end{frame}
 
 \begin{frame}{Interlude II: selection functions}
 	Selection functions `realize' quantifiers:
 
+	\vfill
 	\begin{definition}
 		Def. A \textbf{selection function} on a object X with scalars an object R is a map
 		\begin{equation*}
@@ -172,13 +173,14 @@
 
 	Examples: $\argmax$, $\argmin$, Hilbert's $\varepsilon$
 
+	\vfill
 	If the ambient category is cartesian closed, $J_R$ defines a monad.
 \end{frame}
 
 \begin{frame}{Interlude II: selection functions}
 	Notice: often quantifiers are realized by multiple elements...
 
-	(ambiguous max function)
+
 
 	So a better type for selection functions is
 
@@ -243,11 +245,11 @@
 
 	At this point, we only miss one piece of data:
 	\begin{enumerate}
-		\item[3] A way for agents to \textbf{evaluate the world}
+		\item[3.] A way for agents to \textbf{evaluate the world}
 	\end{enumerate}
 
 	\vfill
-	Idea: for each player, we pick a selection function
+	\textbf{Idea}: for each player, we pick a selection function
 	\begin{equation*}
 		\varepsilon \in \Sel(\Omega, \Comega)
 	\end{equation*}
@@ -260,7 +262,7 @@
 	\vfill
 	\begin{quotation}
 		Game theory is the mathematical study of \textbf{interaction} among independent, self-interested \textbf{agents}.\\
-		{\color{colornote}-- Essentials of Game Theory \cite{eogt}}
+		{\color{colornote}-- Essentials of Game Theory \cite{leyton2008essentials}}
 	\end{quotation}
 
 
@@ -270,6 +272,7 @@
 		\item A set of \textbf{agents}, i.e. the players, which make \textbf{decisions} at different points of a game
 	\end{enumerate}
 
+	\vfill
 	Without (2) a game would be only a \textbf{dynamical system}, whose dynamic is fixed.
 	Instead, in a game \textbf{agents can vary the dynamics in response to the observed unfolding of the interaction}.
 \end{frame}
@@ -279,15 +282,18 @@
 
 	(pic: para optic with arena and agents areas highlighted)
 
-	The arena plays the role of a costate to them:
+	The \textbf{arena} plays the role of a costate to them:
 
 	(pic of $\top$ action)
+
+	$-^\top$ (transposition) is an \textbf{arena lifting} operation.
 \end{frame}
 
 \begin{frame}{Open games}
-	Finally, if arenas can be defined '\textbf{locally}' because they are information plumbing, agents' interests can't since they are defined '\textbf{globally}': an agent might observe and interact with the arena at multiple, causally 'far' points.
+	Arenas can be defined '\textbf{locally}': it's just information plumbing.
+	Agents can't: an agent might observe and interact with the arena at multiple, causally `distant' points.
 
-	We take advantage of the 2-cells in Para(Lens) to handle this:
+	We take advantage of the 2-cells in $\Para(\Lens)$ to handle this:
 
 	(pic)
 \end{frame}
@@ -297,17 +303,17 @@
 
 	\begin{definition}
 		\begin{enumerate}
-			\item A \textbf{parametrized lens}
+			\item A \textbf{parametrized lens}:
+			\begin{diagram*}
+				\G : (X, S) \arrow{r}{(\Sigma, \Sigma')} \& (Y, R)
+			\end{diagram*}
+			\item A set of \textbf{selection functions} indexed by player $P$:
 			\begin{equation*}
-				\G : (X, S) \nlongto{(P, P')} (Y,R)
-			\end{equation*}
-			\item A set of players $\{1, ..., n\}$, each represented by their own \textbf{selection function}
-			\begin{equation*}
-				\varepsilon_i \in \Sel(\Omega_i, \Comega_i)
+				\forall p \in P,\ \varepsilon_i \in \Sel(\Omega_i, \Comega_i)
 			\end{equation*}
 			\item A \textbf{wiring 2-cell}:
 			\begin{equation*}
-				w : \prod_{i \in I} (\Omega_i, \Comega_i) \longto (P,P')
+				w : \prod_{p \in P} (\Omega_p, \Comega_p) \longto (\Sigma, \Sigma')
 			\end{equation*}
 		\end{enumerate}
 	\end{definition}
@@ -317,7 +323,7 @@
 	Equilibria are given by
 
 	\begin{equation*}
-		\eq(x,u) = (\varepsilon_1 \boxtimes \cdots \boxtimes \varepsilon_n)(w ; (x ; G ; u)^\top)
+		\eq(x,u) = (\varepsilon_1 \boxtimes \cdots \boxtimes \varepsilon_n)(w \cmp (x \cmp G \cmp u)^\top)
 	\end{equation*}
 
 	It can be shown that this definition is compositional in the natural way, and recovers Nash equilibria as a solution concept (which justifies calling $\boxtimes$ \textbf{Nash product})
@@ -326,12 +332,19 @@
 \begin{frame}{Open games}
 	This solves long-standing problems with open games:
 
+	\vfill
 	\begin{enumerate}
-		\item We finally compute ther \textbf{right set of Nash equilibria}
-		\item We can handle situations of \textbf{imperfect recall}
-		\item We can define equilibria for \textbf{internal choice}
-		\item We can even model coalitional games (future work)
+		\item We finally compute ther \textbf{right set of Nash equilibria}\\
+		(instead of one-shot deviations)
+		\item We can better handle situations of \textbf{imperfect information}
+		\item We can define \textbf{internal choice}
+		\item Speculative: we might have a direct line of approach to \textbf{cooperative game theory}
 	\end{enumerate}
 
-	Still a lot to explore.
+	\vfill
+	\begin{center}
+	\bfseries
+	\large
+		A lot to explore!
+	\end{center}
 \end{frame}

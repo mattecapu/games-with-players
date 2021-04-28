@@ -1,10 +1,10 @@
-\begin{frame}
+\begin{frame}{What is a game?}
 	Informal definition:
 
 	\vfill
 	\begin{quotation}
 		Game theory is the mathematical study of interaction among independent, self-interested agents.\\
-		{\color{colornote}-- Essentials of Game Theory \cite{eogt}}
+		{\color{colornote}-- Essentials of Game Theory \cite{leyton2008essentials}}
 	\end{quotation}
 
 	\vfill
@@ -19,24 +19,28 @@
 	\end{enumerate}
 \end{frame}
 
-\begin{frame}{Classical game theory}
-	Two ways of representing a game:
-
+\begin{frame}{Representing games}
 	\vfill
 	\begin{enumerate}
-		\item \textbf{Normal form}
-		There is a set of players $P$, and indexed set of \textbf{actions} $A : P \to \Set$, and a \textbf{utility function}
+		\item \textbf{Normal form}:
+		A set of players $P$, and indexed set of \textbf{actions} $A : P \to \Set$, and a \textbf{utility function}
 		\begin{equation*}
-			u : \Pi A \to P \to R
+			u : \prod_{p \in P} A\; p \to (P \to R)
 		\end{equation*}
-		(PD)
-		\item \textbf{Extensive form}
-		There is a set of players $P$, and a tree representing the unfolding of the game. Nodes are assigned to players and grouped in \textbf{information sets}. Branches are called \textbf{moves}. \textbf{Utility vectors} are assigned to each leaf.
-		(PD)
+
+		\item \textbf{Extensive form}:
+		A set of players $P$, and a tree representing the unfolding of the game. Nodes are assigned to players and grouped in \textbf{information sets}. Branches are called \textbf{moves}. A \textbf{tility vectors} is assigned to each leaf.
 	\end{enumerate}
+
+	\vfill
+	\begin{center}
+		\includegraphics[width=.4\textwidth]{figures/pd_norm.png}
+		\qquad
+		\includegraphics[width=.5\textwidth]{figures/pd_ext.png}
+	\end{center}
 \end{frame}
 
-\begin{frame}{Classical game theory}
+\begin{frame}{Extensive $\to$ normal}
 	One can always convert an extensive form game into normal form:
 
 	\hfill
@@ -52,10 +56,12 @@
 			&= \text{payoff at the end of the path}.
 		\end{eqalign*}
 	\end{enumerate}
+
+	\vfill
 	The converse is not always possible since normal-form games have too little structural information.
 \end{frame}
 
-\begin{frame}{Classical game theory}
+\begin{frame}{Solving games}
 	\textbf{Pre-formal definition}: A \textbf{solution concept} is a notion of `optimality' for ways to play a game.
 
 	A 'way to play' for a player $p \in P$ is called \textbf{strategy}:
@@ -75,7 +81,7 @@
 	\end{equation*}
 \end{frame}
 
-\begin{frame}{Classical game theory}
+\begin{frame}{Nash equilibrium}
 	The most important (and general) solution concept is \textbf{Nash equilibrium}:
 
 	\vfill
@@ -91,26 +97,31 @@
 	\end{equation*}
 
 	\vfill
-	It's not the only one: SGP, ESS, $\varepsilon$-Nash, trembling hand, etc.
+	It's not the only one: SGP, ESS, $\epsilon$-Nash, trembling hand, etc.
 
 	Afaik, all are \textbf{refinements} of Nash.
 \end{frame}
 
-\begin{frame}{Classical game theory}
+\begin{frame}{Nash equilibrium: example}
+	\begin{center}
+		\includegraphics[width=.6\textwidth]{figures/pd_norm.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Pros and cons}
 	Problems with classical game theory:
 	\begin{enumerate}
-		\item Games are treated \textbf{monolithically}: one defines a game all at once, and treats reuse/composition only informally.
-		\item Stuck in early \textbf{20th century mathematical language}
+		\item Games are treated \textbf{monolithically}
+		\item Stuck in \textbf{early 20th century mathematical language}
 		\item Denotations are quite disappointing: normal form is too opaque, extensive form is too... extended
 	\end{enumerate}
 
 	Open games are a proposed improvement:
 	\begin{enumerate}
-		\item Defined \textbf{compositionally}.
-		\textbf{This includes, most importantly, equilibria}
+		\item Games are defined \textbf{compositionally}, including \textbf{equilibria}
 		\item Mathematically more sophisticated (grounded in \textbf{category theory})
 		\item Denoted by \textbf{string diagrams}: halfway between normal and extensive form
 	\end{enumerate}
 
-	Follows the ACT tradition of `opening up' systems: always consider a system as part of an environment it interacts non-trivially with
+	It follows the ACT tradition of `opening up' systems: \emph{always consider a system as part of an environment it interacts non-trivially with}
 \end{frame}

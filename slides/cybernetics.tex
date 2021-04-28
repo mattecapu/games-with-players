@@ -1,8 +1,91 @@
 \begin{frame}{Cybernetics}
+	From $\kappa\upsilon\beta\varepsilon\rho\nu\alpha\omega$ (\emph{to govern, to steer}):
+	\vfill
+
+	\begin{quotation}
+		Science concerned with the study of systems of any nature which are capable of receiving, storing and processing information so as to use it for control.
+		{\color{colornote}-- Kolmogorov}
+	\end{quotation}
+
+	Lenses model dynamical systems (see: \cite{myers2020double})\\
+	\textbf{\color{coloraccent}Parametrized lenses (+ decorations) model cybernetic systems!}
+
+	\vfill
+	The missing bits are \textbf{storage} and \textbf{feedback}.
+
+	\vfill
+	{\color{colornote}
+	$\underbrace{\text{Parametrized $\cdots$ parametrized}}_{\text{$n$ times}}$ lenses model \textbf{...?}\\[1.5ex]
+		\hspace{5ex} \textbf{Hierarchical agency?}
+	}
+\end{frame}
+
+\begin{frame}{Higher-order cybernetics}
+	Agents
 	\begin{enumerate}
-		\item Lenses model dynamical systems (see also: DJM, Spivak, Schultz, Vasilakopoulou, etc.)
-		\item Parametrized lenses model cybernetic systems
-		\item Parametrized $\cdots$ parametrized lenses model {\color{coloraccent}...?}\\
-		\hspace{5ex} {\color{colornote}Hierarchical agency? Higher-order cybernetic systems?}
+		\item act in the arena,
+		\item then \textbf<2->{observe} the result of their behaviour,
+		\item then change their action accordingly,
 	\end{enumerate}
+	until an equilibrium is reached.
+
+	\onslide<2->{
+	\vfill
+	\begin{tabular}{p{.2\textwidth}|p{.12\textwidth}p{.12\textwidth}p{.12\textwidth}p{.1\textwidth}}
+		& \textbf{1st} & \textbf{2nd} & \textbf{3rd} & $\cdots$\\
+		\hline
+		non-trivial\newline observation     &     & yes & yes & $\cdots$\\[2ex]
+		\hline
+		non-trivial analysis                &     &     & yes & $\cdots$\\[2ex]
+		\hline
+		$\qquad \vdots$                     &     &     &     & $\ddots$
+	\end{tabular}
+	}
+\end{frame}
+
+\begin{frame}{Periodic table of cybernetic types}
+	\vspace{-2ex}
+	Reasoning negatively:
+	\vspace{2ex}
+
+	\vfill
+	\begin{tabular}{p{.16\textwidth}|p{.1\textwidth}p{.1\textwidth}p{.1\textwidth}p{.1\textwidth}p{.1\textwidth}p{.01\textwidth}}
+		% static - closed dynamical - open dynamical - cybernetic - 2nd-order cybernetic
+		& \textbf{-2nd} & \textbf{-1st} & \textbf{0th} & \textbf{1st} & \textbf{2nd} & $\cdots$\\
+		\hline
+		{\color{coloraccent}non-trivial system}      &     & yes & yes & yes & yes & $\cdots$\\[2ex]
+		\hline
+		{\color{coloraccent}non-trivial context}     &     &     & yes & yes & yes & $\cdots$\\[2ex]
+		\hline
+		{\color{coloraccent}non-trivial interaction} &     &     &     & yes & yes & $\cdots$\\[2ex]
+		\hline
+		non-trivial observation                      &     &     &     &     & yes & $\cdots$\\[2ex]
+		\hline
+		$\qquad \vdots$                              &     &     &     &     &     & $\ddots$
+	\end{tabular}
+\end{frame}
+
+\begin{frame}{Learners as 2nd-order cybernetic systems}
+	(pic learner)
+
+	Given a parameter $p \in P$, a learner can only observe $\L^\top$ on an infinitesimal neighbourhood of $P$\\
+	\qquad $\rightsquigarrow$ \textbf{2nd-order cybernetic systems}
+
+	\vfill
+	We can consider $\Para(\Lens(\cat{Smooth}))$ a 2nd-order cybernetic \textbf{doctrine}.
+\end{frame}
+
+\begin{frame}{Cybernetics}
+	This is actually a strength:
+	\begin{enumerate}
+		\item We can encode the selection in the parameter dynamics
+		\item We can analyze locally and iteratively\\(vs. games `global and one-step')
+	\end{enumerate}
+
+	\vfill
+	A learner produces its own selection function as a fixpoint:
+
+	\begin{equation*}
+		\eq(x,u) = \{ p \in \operatorname{fixpoint}(p,\ GD \cmp w \cmp (x \cmp \L \cmp u)^\top) \}
+	\end{equation*}
 \end{frame}
