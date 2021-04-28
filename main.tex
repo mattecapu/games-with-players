@@ -1,0 +1,53 @@
+\documentclass[english]{presentation}
+%\setbeameroption{show notes on second screen}
+%\setbeameroption{show only notes}
+
+\usepackage{chngpage}
+\usepackage{array}
+
+% Presento style file
+\usepackage{config/presento}
+
+\usepackage{textpos}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+
+\usepackage{stmaryrd}
+
+% strikethrough text
+\usepackage[normalem]{ulem}
+
+% macros
+\usepackage{mama}
+
+\addbibresource{./bibliography.bib}
+
+\title{Games with players}
+\subtitle{Towards categorical foundations of cybernetics\\[3ex]{\color{colormain}An MSP101 talk}}
+\institute{University of Strathclyde}
+\author{Matteo Capucci}
+\date{April 29th, 2021 (Day 488 of the COVID Era)}
+
+\begin{document}
+	\begin{frame}[plain]
+		\maketitle
+	\end{frame}
+
+	\input{slides/intro.tex}
+	\input{slides/games.tex}
+	\input{slides/open-games.tex}
+	\input{slides/cybernetics.tex}
+
+	\begin{framecard}
+		{\color{white}
+		\bfseries
+
+		\hugetext{Thanks for your attention!}
+		\largetext {Questions?}}
+	\end{framecard}
+
+	\begin{frame}{References}
+		\nocite{*}
+		\printbibliography
+	\end{frame}
+\end{document}

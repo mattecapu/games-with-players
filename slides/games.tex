@@ -1,0 +1,116 @@
+\begin{frame}
+	Informal definition:
+
+	\vfill
+	\begin{quotation}
+		Game theory is the mathematical study of interaction among independent, self-interested agents.\\
+		{\color{colornote}-- Essentials of Game Theory \cite{eogt}}
+	\end{quotation}
+
+	\vfill
+	Examples:
+	\begin{enumerate}
+		\item Tic-tac-toe, chess, Monopoly, etc.
+		\item Economic games (includes/are included in: ecological games)
+		\item Social dilemmas (PD, 'tragedy of the commons', etc.)
+		\item Proof theory, model theory, etc.
+		\item Machine learning
+		\item \textbf{etc.}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Classical game theory}
+	Two ways of representing a game:
+
+	\vfill
+	\begin{enumerate}
+		\item \textbf{Normal form}
+		There is a set of players $P$, and indexed set of \textbf{actions} $A : P \to \Set$, and a \textbf{utility function}
+		\begin{equation*}
+			u : \Pi A \to P \to R
+		\end{equation*}
+		(PD)
+		\item \textbf{Extensive form}
+		There is a set of players $P$, and a tree representing the unfolding of the game. Nodes are assigned to players and grouped in \textbf{information sets}. Branches are called \textbf{moves}. \textbf{Utility vectors} are assigned to each leaf.
+		(PD)
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Classical game theory}
+	One can always convert an extensive form game into normal form:
+
+	\hfill
+	\begin{enumerate}
+		\item Define
+		\begin{equation*}
+			A\; p = \sum_{x \in \text{$p$'s nodes}} \text{moves at $x$}
+		\end{equation*}
+		\item Define
+		\begin{eqalign*}
+			u(\text{action profile $a_1, \ldots, a_n$}) &=
+			u(\text{path $a_1, \ldots, a_n$})\\
+			&= \text{payoff at the end of the path}.
+		\end{eqalign*}
+	\end{enumerate}
+	The converse is not always possible since normal-form games have too little structural information.
+\end{frame}
+
+\begin{frame}{Classical game theory}
+	\textbf{Pre-formal definition}: A \textbf{solution concept} is a notion of `optimality' for ways to play a game.
+
+	A 'way to play' for a player $p \in P$ is called \textbf{strategy}:
+	\begin{equation*}
+		\Omega\; p = \prod_{x \in \text{$p$'s nodes}} \text{moves at $x$}
+	\end{equation*}
+	Compare it with
+	\begin{equation*}
+		A\; p = \sum_{x \in \text{$p$'s nodes}} \text{moves at $x$}
+	\end{equation*}
+
+	\textbf{Key difference}: strategies are a \textbf{comprehensive plan of action}: for each \textbf{state} of the game, no matter how unlikely, we plan an \textbf{action}.
+
+	A choice of strategy for each player is a \textbf{strategy profile}:
+	\begin{equation*}
+		S = \prod_{p \in P} \Omega\; p
+	\end{equation*}
+\end{frame}
+
+\begin{frame}{Classical game theory}
+	The most important (and general) solution concept is \textbf{Nash equilibrium}:
+
+	\vfill
+	\begin{definition}
+		A strategy profile $s \in S$ is a Nash equilibrium if no player has interest in unilaterally deviating its strategy.
+	\end{definition}
+
+	\vfill
+	e.g. for utility-maximizing players:
+
+	\begin{equation*}
+		\forall p \in P,\, \forall s'_p \in \Omega\; p \quad u_i(s[s_p/s'_p]) \leq u_p(s)
+	\end{equation*}
+
+	\vfill
+	It's not the only one: SGP, ESS, $\varepsilon$-Nash, trembling hand, etc.
+
+	Afaik, all are \textbf{refinements} of Nash.
+\end{frame}
+
+\begin{frame}{Classical game theory}
+	Problems with classical game theory:
+	\begin{enumerate}
+		\item Games are treated \textbf{monolithically}: one defines a game all at once, and treats reuse/composition only informally.
+		\item Stuck in early \textbf{20th century mathematical language}
+		\item Denotations are quite disappointing: normal form is too opaque, extensive form is too... extended
+	\end{enumerate}
+
+	Open games are a proposed improvement:
+	\begin{enumerate}
+		\item Defined \textbf{compositionally}.
+		\textbf{This includes, most importantly, equilibria}
+		\item Mathematically more sophisticated (grounded in \textbf{category theory})
+		\item Denoted by \textbf{string diagrams}: halfway between normal and extensive form
+	\end{enumerate}
+
+	Follows the ACT tradition of `opening up' systems: always consider a system as part of an environment it interacts non-trivially with
+\end{frame}
