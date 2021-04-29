@@ -50,7 +50,7 @@
 
 	\vfill
 	\begin{tabular}{p{.16\textwidth}|p{.1\textwidth}p{.1\textwidth}p{.1\textwidth}p{.1\textwidth}p{.1\textwidth}p{.01\textwidth}}
-		% static - closed dynamical - open dynamical - cybernetic - 2nd-order cybernetic
+		% static - closed dynamical - open dynamical - cybernetic - 2nd-order cybernetic - ...
 		& \textbf{-2nd} & \textbf{-1st} & \textbf{0th} & \textbf{1st} & \textbf{2nd} & $\cdots$\\
 		\hline
 		{\color{coloraccent}non-trivial system}      &     & yes & yes & yes & yes & $\cdots$\\[2ex]
@@ -65,27 +65,30 @@
 	\end{tabular}
 \end{frame}
 
-\begin{frame}{Learners as 2nd-order cybernetic systems}
-	(pic learner)
-
-	Given a parameter $p \in P$, a learner can only observe $\L^\top$ on an infinitesimal neighbourhood of $P$\\
-	\qquad $\rightsquigarrow$ \textbf{2nd-order cybernetic systems}
-
-	\vfill
-	We can consider $\Para(\Lens(\cat{Smooth}))$ a 2nd-order cybernetic \textbf{doctrine}.
-\end{frame}
-
-\begin{frame}{Cybernetics}
-	This is actually a strength:
-	\begin{enumerate}
-		\item We can encode the selection in the parameter dynamics
-		\item We can analyze locally and iteratively\\(vs. games `global and one-step')
-	\end{enumerate}
+\begin{frame}{Games vs. learners}
+	\begin{center}
+		\includegraphics[clip, page=16, trim=2cm 5cm 5cm 2cm, width=.8\textwidth]{figures/drawings.pdf}
+	\end{center}
 
 	\vfill
 	A learner produces its own selection function as a fixpoint:
 
 	\begin{equation*}
-		\eq(x,u) = \{ p \in \operatorname{fixpoint}(p,\ GD \cmp w \cmp (x \cmp \L \cmp u)^\top) \}
+		p \in \eq(x,u) \sse p = p \cmp GD \cmp w \cmp (x \cmp \L \cmp u)^\top
 	\end{equation*}
+\end{frame}
+
+\begin{frame}{2nd order cybernetics}
+	Given a parameter $p \in P$, a learner can only observe $\L^\top$ on an infinitesimal neighbourhood of $p$\\
+	\qquad $\rightsquigarrow$ \textbf{2nd-order cybernetic systems}
+
+	\vfill
+	We can consider $\Para(\Lens(\cat{Smooth}))$ a \textbf{2nd-order \emph{cybernetic doctrine}} (terminology borrowed from \cite{myers2021cst})
+
+	\vfill
+	This is actually a strength:
+	\begin{enumerate}
+		\item We can encode the selection in the parameter dynamics
+		\item We can analyze locally and iteratively\\(vs. games `global and one-step')
+	\end{enumerate}
 \end{frame}
