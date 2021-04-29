@@ -1,3 +1,11 @@
+\begin{framecard}
+	{\color{white}
+	\bfseries
+
+	\hugetext{Game theory 101}}
+\end{framecard}
+
+
 \begin{frame}{What is a game?}
 	Informal definition:
 
@@ -45,13 +53,12 @@
 	\begin{enumerate}
 		\item Define
 		\begin{equation*}
-			A\; p = \sum_{x \in \text{$p$'s nodes}} \text{moves at $x$}
+			A\; p = \prod_{x \in \text{$p$'s nodes}} \text{moves at $x$}
 		\end{equation*}
 		\item Define
 		\begin{eqalign*}
-			u(\text{action profile $a_1, \ldots, a_n$}) &=
-			u(\text{path $a_1, \ldots, a_n$})\\
-			&= \text{payoff at the end of the path}.
+			u(a_1, \ldots, a_n) \quad &= \qquad \text{leaf at the end of the path}\\
+			&\text{root} \to a_1 \to a_2(a_1) \to \ldots \to a_n(\cdots a_2(a_1))
 		\end{eqalign*}
 	\end{enumerate}
 
@@ -62,17 +69,15 @@
 \begin{frame}{Solving games}
 	\textbf{Pre-formal definition}: A \textbf{solution concept} is a notion of `optimality' for ways to play a game.
 
+	\vfill
 	A 'way to play' for a player $p \in P$ is called \textbf{strategy}:
 	\begin{equation*}
 		\Omega\; p = \prod_{x \in \text{$p$'s nodes}} \text{moves at $x$}
 	\end{equation*}
-	Compare it with
-	\begin{equation*}
-		A\; p = \sum_{x \in \text{$p$'s nodes}} \text{moves at $x$}
-	\end{equation*}
 
-	\textbf{Key difference}: strategies are a \textbf{comprehensive plan of action}: for each \textbf{state} of the game, no matter how unlikely, we plan an \textbf{action}.
+	Strategies are a \textbf{comprehensive plan of action}: for each \textbf{state} of the game, no matter how unlikely, we plan an \textbf{action}.
 
+	\vfill
 	A choice of strategy for each player is a \textbf{strategy profile}:
 	\begin{equation*}
 		S = \prod_{p \in P} \Omega\; p
